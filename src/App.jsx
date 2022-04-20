@@ -1,7 +1,16 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+const Articles = ({ articles }) => (
+  <li className="list-group-item">
+    {articles.map((article) => (
+      <p>{article}</p>
+    ))}
+  </li>
+);
+
 export default function App() {
+  const [readingList, setReadingList] = useState([]);
   return (
     <div className="container">
       <div className="row">
@@ -17,10 +26,7 @@ export default function App() {
         <div className="col">
           <h2>Saved Articles</h2>
           <ul className="list-group">
-            <li className="list-group-item">
-              <input className="form-check-input me-1" type="checkbox" value="" aria-label="..." />
-              First checkbox
-            </li>
+            <Articles />
           </ul>
         </div>
       </div>
