@@ -1,11 +1,5 @@
 import React, { useState } from 'react';
-
-const Articles = ({ articles }) => (
-  articles.map((article) => (
-    <li key={article} className="list-group-item">{article}</li>
-  ))
-
-);
+import LinkList from './components/LinkList.jsx';
 
 export default function App() {
   const [readingList, setReadingList] = useState([]);
@@ -26,15 +20,7 @@ export default function App() {
           </form>
         </div>
       </div>
-
-      <div className="row mt-4">
-        <div className="col">
-          <h2>Saved Articles</h2>
-          <ul className="list-group">
-            <Articles articles={readingList} />
-          </ul>
-        </div>
-      </div>
+      {readingList.length > 0 && <LinkList links={readingList} />}
     </div>
   );
 }
