@@ -8,7 +8,7 @@ export default function LinkList({ links, addToReadList }) {
         <ul className="list-group">
           {links.map((link, index) => (
             <li key={link} className="list-group-item d-flex justify-content-between">
-              {link}
+              <a href={link} target="_blank">{link}</a>
               <input className="form-check-input me-1 pull-right" type="checkbox" onClick={() => addToReadList(link, index)} />
             </li>
           ))}
