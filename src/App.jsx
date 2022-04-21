@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import validUrl from 'valid-url';
 import LinkList from './components/LinkList.jsx';
 import ReadList from './components/ReadList.jsx';
 
@@ -8,8 +9,13 @@ export default function App() {
 
   const addArticle = (event) => {
     event.preventDefault();
-    setReadingList([...readingList, event.target.link.value]);
-    event.target.link.value = '';
+
+    if (validUrl.isUri(event.target.link.value)) {
+      setReadingList([...readingList, event.target.link.value]);
+      event.target.link.value = '';
+    } else {
+      event.target.link.value = 'Please enter a valid URL.';
+    }
   };
 
   const addToReadList = (link, index) => {
