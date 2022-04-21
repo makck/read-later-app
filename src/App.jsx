@@ -3,11 +3,11 @@ import LinkList from './components/LinkList.jsx';
 
 export default function App() {
   const [readingList, setReadingList] = useState([]);
+  const [completedList, setCompletedList] = useState([]);
 
   const addArticle = (event) => {
     event.preventDefault();
     setReadingList([...readingList, event.target.link.value]);
-    console.log(event.target.link.value);
   };
 
   return (
