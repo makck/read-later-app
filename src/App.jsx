@@ -10,6 +10,13 @@ export default function App() {
     setReadingList([...readingList, event.target.link.value]);
   };
 
+  const addToReadList = (link, index) => {
+    setCompletedList([...completedList, link]);
+    const tempUnreadList = [...readingList];
+    tempUnreadList.splice(index, 1);
+    setReadingList([...tempUnreadList]);
+  };
+
   return (
     <div className="container">
       <div className="row">
@@ -20,7 +27,22 @@ export default function App() {
           </form>
         </div>
       </div>
-      {readingList.length > 0 && <LinkList links={readingList} />}
+      {readingList.length > 0 && <LinkList links={readingList} addToReadList={addToReadList} />}
+
+      <div className="row mt-4">
+        <div className="col">
+          <h2>Read List</h2>
+          <ul className="list-group">
+            {completedList.map((link) => (
+              <li key={link} className="list-group-item d-flex justify-content-between">
+                {link}
+                <input className="form-check-input me-1 pull-right" type="checkbox" />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
     </div>
   );
 }
