@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import validUrl from 'valid-url';
 import LinkList from './components/LinkList.jsx';
 import ReadList from './components/ReadList.jsx';
+import LinkForm from './components/LinkForm.jsx';
 
 export default function App() {
   const [readingList, setReadingList] = useState([]);
@@ -27,15 +28,7 @@ export default function App() {
 
   return (
     <div className="container">
-      <div className="row">
-        <h2 className="mt-4 mb-4">To Read App</h2>
-        <div className="col">
-          <form className="form-inline" onSubmit={addArticle}>
-            <input name="link" className="form-control mb-2 mr-sm-2" type="text" placeholder="Link to Article" />
-            <button className="btn btn-secondary mb-2" type="submit">Add to list</button>
-          </form>
-        </div>
-      </div>
+      <LinkForm addArticle={addArticle} />
       {readingList.length > 0 && <LinkList links={readingList} addToReadList={addToReadList} />}
       {completedList.length > 0 && <ReadList completedList={completedList} />}
     </div>
